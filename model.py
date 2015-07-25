@@ -107,8 +107,8 @@ def build_step(P,controller,controller_size,mem_size,mem_width,similarity=cosine
         return M_curr,weight_curr,output
     return step,[memory_init,weight_init,None]
 
-def build(P,mem_size,mem_width,controller_size,ctrl):
-    step,outputs_info = build_step(P,ctrl,controller_size,mem_size,mem_width)
+def build(P,mem_size,mem_width,controller_size,ctrl, num_heads):
+    step,outputs_info = build_step(P,ctrl,controller_size,mem_size,mem_width, no_heads=num_heads )
     def predict(input_sequence):
         outputs,_ = theano.scan(
                 step,

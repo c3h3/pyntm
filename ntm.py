@@ -18,7 +18,7 @@ import model
 class NTM():
     
     def __init__(self, 
-                 input_size, output_size, mem_size, mem_width, hidden_sizes,
+                 input_size, output_size, mem_size, mem_width, hidden_sizes, num_heads,
                  max_epochs, momentum, learning_rate ,grad_clip, l2_norm):
         
         self.input_size = input_size
@@ -26,6 +26,7 @@ class NTM():
         self.mem_size = mem_size
         self.mem_width = mem_width
         self.hidden_sizes = hidden_sizes
+        self.num_heads = num_heads
         self.max_epochs = max_epochs
         self.momentum = momentum
         self.learning_rate = learning_rate
@@ -41,7 +42,7 @@ class NTM():
         
         P = Parameters()
         ctrl = controller.build( P, self.input_size, self.output_size, self.mem_size, self.mem_width, self.hidden_sizes)
-        predict = model.build( P, self.mem_size, self.mem_width, self.hidden_sizes[-1], ctrl)
+        predict = model.build( P, self.mem_size, self.mem_width, self.hidden_sizes[-1], ctrl, self.num_heads)
 
         input_seq = T.matrix('input_sequence')
         output_seq = T.matrix('output_sequence')
