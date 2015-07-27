@@ -15,6 +15,7 @@ model = ntm.NTM (
     mem_size      = 128, 
     mem_width     = 20, 
     hidden_sizes  = [100],
+    num_heads     = 1,
     max_epochs    = 100000, 
     momentum      = 0.9, 
     learning_rate = 1e-5 ,
@@ -58,7 +59,7 @@ for counter in xrange(model.max_epochs):
     model.train_his.append({"round":counter, "cost": valid_cost})
 
     if valid_cost < model.best_valid_cost:
-        model.save('./model.pkl')
+        model.save('./model_test.pkl')
         model.best_valid_cost = valid_cost
 #         print "~~~save validation~~~", counter, "length: ",length2,  valid_cost
 
